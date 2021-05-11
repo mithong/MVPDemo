@@ -9,7 +9,7 @@ import com.example.mvpdemo.utils.Constant
 
 class PokemonRemoteDataSource : PokemonDataSource.Remote{
 
-    private var baseUrl = Constant.BASE_URL
+    private val baseUrl = Constant.BASE_URL
 
     override fun getPokemon(listener: OnFetchDataJsonListener<MutableList<Pokemon>>) {
         GetJsonFromUrl(listener, PokemonEntry.DATA).execute(baseUrl)
@@ -17,12 +17,12 @@ class PokemonRemoteDataSource : PokemonDataSource.Remote{
 
     companion object {
         @Volatile
-        private var mInstance: PokemonRemoteDataSource? = null
+        private var instance: PokemonRemoteDataSource? = null
 
         fun getRemote(): PokemonRemoteDataSource =
-            mInstance ?: synchronized(this) {
+                instance ?: synchronized(this) {
                 val newInstance =
-                    mInstance ?: PokemonRemoteDataSource().also { mInstance = it }
+                        instance ?: PokemonRemoteDataSource().also { instance = it }
                 newInstance
             }
     }

@@ -4,10 +4,10 @@ data class Pokemon(
     val name : String = "",
     val types : String = "",
     val hp : String = "",
-    val nameSkillOne : String = "",
-    val damageSkillOne : String = "",
-    val nameSkillTwo : String = "",
-    val damageSkillTwo : String = "",
+    val firstName : String = "",
+    val firstDamage : String = "",
+    val secondName : String = "",
+    val secondDamage : String = "",
     val small : String = ""
 
 )

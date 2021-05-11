@@ -12,10 +12,10 @@ class ParseJson {
             Pokemon(name = jsonObject.getString(PokemonEntry.NAME),
                 types = jsonObject.getString(PokemonEntry.TYPES),
                 hp = jsonObject.getString(PokemonEntry.HP),
-                nameSkillOne = attacks.getJSONObject(0).getString(PokemonEntry.NAMEATTACK),
-                damageSkillOne = attacks.getJSONObject(0).getString(PokemonEntry.DAMAGE) ,
-                nameSkillTwo = attacks.getJSONObject(1).getString(PokemonEntry.NAMEATTACK),
-                damageSkillTwo = attacks.getJSONObject(1).getString(PokemonEntry.DAMAGE) ,
+                firstName = attacks.getJSONObject(0).getString(PokemonEntry.NAMEATTACK),
+                firstDamage = attacks.getJSONObject(0).getString(PokemonEntry.DAMAGE) ,
+                secondName = attacks.getJSONObject(1).getString(PokemonEntry.NAMEATTACK),
+                secondDamage = attacks.getJSONObject(1).getString(PokemonEntry.DAMAGE) ,
                 small = images.getString(PokemonEntry.SMALL))
     }
 }

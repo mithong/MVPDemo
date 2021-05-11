@@ -14,15 +14,15 @@ class PokemonRepository private constructor(private val remote: PokemonDataSourc
 
     companion object {
         @Volatile
-        private var mInstance: PokemonRepository? = null
+        private var instance: PokemonRepository? = null
 
         fun getRepository(
             remote: PokemonDataSource.Remote,
             local: PokemonDataSource.Local
         ): PokemonRepository =
-            mInstance ?: synchronized(this) {
+                instance ?: synchronized(this) {
                 val newInstance =
-                    mInstance ?: PokemonRepository(remote, local).also { mInstance = it }
+                        instance ?: PokemonRepository(remote, local).also { instance = it }
                 newInstance
             }
     }

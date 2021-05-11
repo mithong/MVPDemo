@@ -76,6 +76,7 @@
             app:layout_constraintStart_toEndOf="@+id/imagePokemon"
             app:layout_constraintTop_toBottomOf="@+id/textViewSkillOne"
             tools:text="Damage : 30" />
+
         <TextView
             android:id="@+id/textViewSkillTwo"
             android:layout_width="wrap_content"

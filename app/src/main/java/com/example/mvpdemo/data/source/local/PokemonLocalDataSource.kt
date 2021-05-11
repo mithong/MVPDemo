@@ -6,12 +6,12 @@ class PokemonLocalDataSource : PokemonDataSource, PokemonDataSource.Local {
 
     companion object {
         @Volatile
-        private var mInstance: PokemonLocalDataSource? = null
+        private var instance: PokemonLocalDataSource? = null
 
         fun getLocal(): PokemonLocalDataSource =
-            mInstance ?: synchronized(this) {
+                instance ?: synchronized(this) {
                 val newInstance =
-                    mInstance ?: PokemonLocalDataSource().also { mInstance = it }
+                        instance ?: PokemonLocalDataSource().also { instance = it }
                 newInstance
             }
     }

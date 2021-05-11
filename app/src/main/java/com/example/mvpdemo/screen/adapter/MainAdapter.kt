@@ -10,14 +10,14 @@ import com.example.mvpdemo.R
 import com.example.mvpdemo.data.model.Pokemon
 import kotlinx.android.synthetic.main.item_layout.view.*
 
-class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder?>(){
+class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>(){
     private val pokemon = mutableListOf<Pokemon>()
     private lateinit var clickListener: (Pokemon) -> Unit
 
     fun updateData(pokemon: MutableList<Pokemon>?) {
         pokemon?.let {
             this.pokemon.clear()
-            this.pokemon.addAll(pokemon)
+            this.pokemon.addAll(it)
             notifyDataSetChanged()
         }
     }
@@ -32,7 +32,7 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder?>(){
         return ViewHolder(view, clickListener)
     }
 
-    override fun getItemCount(): Int = pokemon.size
+    override fun getItemCount() = pokemon.size
 
     override fun onBindViewHolder(holder: MainAdapter.ViewHolder, position: Int) = holder.bindViewData(pokemon[position])
 
@@ -41,15 +41,17 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder?>(){
 
         @SuppressLint("SetTextI18n")
         fun bindViewData(pokemon : Pokemon) = with(itemView){
-            textViewName.text = pokemon.name
-            textViewType.text = resources.getString(R.string.Type)+pokemon.types
-            textViewHp.text = resources.getString(R.string.Hp)+pokemon.hp
-            textViewSkillOne.text = resources.getString(R.string.Skill)+pokemon.nameSkillOne
-            textViewDamageOne.text = resources.getString(R.string.Damage)+pokemon.damageSkillOne
-            textViewSkillTwo.text = resources.getString(R.string.Skill)+pokemon.nameSkillTwo
-            textViewDamageTwo.text = resources.getString(R.string.Damage)+pokemon.damageSkillTwo
-            setOnClickListener{onItemClicked(pokemon)}
-            getImage(pokemon)
+            pokemon.run {
+                textViewName.text = name
+                textViewType.text = resources.getString(R.string.Type) + types
+                textViewHp.text = resources.getString(R.string.Hp) + hp
+                textViewSkillOne.text = resources.getString(R.string.Skill) + firstName
+                textViewDamageOne.text = resources.getString(R.string.Damage) + firstDamage
+                textViewSkillTwo.text = resources.getString(R.string.Skill) + secondName
+                textViewDamageTwo.text = resources.getString(R.string.Damage) + secondDamage
+                setOnClickListener { onItemClicked(this) }
+                getImage(this)
+            }
         }
 
         private fun getImage(pokemon: Pokemon) {
